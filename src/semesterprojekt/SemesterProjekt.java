@@ -7,7 +7,7 @@ package semesterprojekt;
 
 /**
  *
- * @author Rickie
+ * @author Rickieq
  */
 public class SemesterProjekt {
 
