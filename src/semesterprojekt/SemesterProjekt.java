@@ -15,9 +15,10 @@ public class SemesterProjekt {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        //initializing a game object and starting the game
         Game game = new Game();
         game.play();
     }
-    
+
 }
