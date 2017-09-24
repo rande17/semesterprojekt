@@ -1,4 +1,4 @@
-spackage worldofzuul;
+package semesterprojekt;
 
 import java.util.HashMap;
 

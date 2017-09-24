@@ -1,4 +1,4 @@
-package worldofzuul;
+package semesterprojekt;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;

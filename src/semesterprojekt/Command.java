@@ -1,4 +1,4 @@
-package worldofzuul;
+package semesterprojekt;
 
 /** 
  * @author  Michael Kolling and David J. Barnes
