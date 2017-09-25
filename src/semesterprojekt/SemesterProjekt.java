@@ -9,7 +9,7 @@ package semesterprojekt;
  *
  * @author Rickie
  * @author Frederik
- * @author Julie
+ * @author Julie Dittmann Weimar Andersen
  */
 public class SemesterProjekt {
 
