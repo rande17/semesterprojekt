@@ -5,7 +5,8 @@
  */
 package semesterprojekt;
 
-/**@author Thomas
+/**
+ * @author Thomas
  * @author Nicolai
  * @author Rickie
  * @author Frederik
