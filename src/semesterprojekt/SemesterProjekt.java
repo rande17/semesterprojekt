@@ -6,7 +6,7 @@
 package semesterprojekt;
 
 /**
- *
+ * @author Nicolai
  * @author Rickie
  * @author Frederik
  * @author Julie Dittmann Weimar Andersen
