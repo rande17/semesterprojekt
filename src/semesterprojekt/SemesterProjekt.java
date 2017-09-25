@@ -8,6 +8,7 @@ package semesterprojekt;
 /**
  *
  * @author Rickie
+ * @author Frederik
  */
 public class SemesterProjekt {
 
