@@ -15,14 +15,13 @@ public class Game {
     }
 
     private void createRooms() {
-        Room outside, theatre, pub, lab, office, beach;
+        Room outside, theatre, pub, lab, office;
 
         outside = new Room("outside the main entrance of the university");
         theatre = new Room("in a lecture theatre");
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-        beach= new Room("at the beach");
 
         outside.setExit("east", theatre);
         outside.setExit("south", lab);
