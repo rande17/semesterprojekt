@@ -4,6 +4,7 @@ package semesterprojekt;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  * @author Nicolai
+ * @version 2006.03.30daSFT
  */
 public class Game {
     /* data field with the attributes parser and currentRoom
@@ -30,6 +31,7 @@ public class Game {
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+
    
         outside.setExit("east", theatre);
         outside.setExit("south", lab);
