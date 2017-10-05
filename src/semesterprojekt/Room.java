@@ -12,10 +12,10 @@ import java.util.Iterator;
 public class Room {
 
     private String description;
-    private HashMap<String, Room> exits; //ask Rande
+    private HashMap<String, Room> exits; //ask Rande << just and initialization of a HashMap with the identifier exits, that takes a String object as the first object and a Room as the second object, hope it makes sense
 
     //Constructor connect the new room with the description 
-    public Room(String description) { 
+    public Room(String description) {
         this.description = description;
         exits = new HashMap<String, Room>();
     }
@@ -30,7 +30,7 @@ public class Room {
         return description;
     }
 
-     //returns the description of where you are, plus possible exits
+    //returns the description of where you are, plus possible exits
     public String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
     }
@@ -40,7 +40,7 @@ public class Room {
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
         //loops over all existing exits and adds the exits to the string
-        for (String exit : keys) { 
+        for (String exit : keys) {
             returnString += " " + exit;
         }
         return returnString;
