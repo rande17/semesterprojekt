@@ -9,14 +9,17 @@ import java.util.StringTokenizer;
  */
 public class Parser { // transformering fra udstruktureret data til struktureret
     // private variable. 
+
     private CommandWords commands;
     private Scanner reader;
+
     // Constructor
     public Parser() { // Methode
         commands = new CommandWords();
         reader = new Scanner(System.in);
     }
-    // Metode, get command
+
+    // Metode, get command, input reads input line.
     public Command getCommand() {
         String inputLine;
         String word1 = null;
@@ -25,7 +28,7 @@ public class Parser { // transformering fra udstruktureret data til struktureret
         System.out.print("> ");
 
         inputLine = reader.nextLine();
-        // tokenizer ??
+        // tokenizer
         Scanner tokenizer = new Scanner(inputLine);
         if (tokenizer.hasNext()) {
             word1 = tokenizer.next();
@@ -36,6 +39,7 @@ public class Parser { // transformering fra udstruktureret data til struktureret
 
         return new Command(commands.getCommandWord(word1), word2);
     }
+
     // metode, show commands, uden return
     public void showCommands() {
         commands.showAll();
