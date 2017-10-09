@@ -44,7 +44,7 @@ public class Game {
         beach.setExit("seabottom", seaBottom);
         beach.setExit("camp", camp);
 
-        airport.setExit("west", beach);
+        airport.setExit("beach", beach);
        
 
 
