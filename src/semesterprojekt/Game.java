@@ -39,25 +39,25 @@ public class Game {
         raft = new Room ("building the raft");
 
    
-        beach.setExit("north", jungle);
-        beach.setExit("south", seaBottom);
-        beach.setExit("west", camp);
+        beach.setExit("jungle", jungle);
+        beach.setExit("seabottom", seaBottom);
+        beach.setExit("camp", camp);
 
 
-        jungle.setExit("north", mountain);
-        jungle.setExit("east", cave);
-        jungle.setExit("south", beach);
+        jungle.setExit("mountain", mountain);
+        jungle.setExit("cave", cave);
+        jungle.setExit("beach", beach);
 
-        mountain.setExit("south", jungle);
+        mountain.setExit("jungle", jungle);
 
-        cave.setExit("west", jungle);
+        cave.setExit("jungle", jungle);
 
-        camp.setExit("east", beach);
-        camp.setExit("west", raft);
+        camp.setExit("beach", beach);
+        camp.setExit("raft", raft);
         
-        seaBottom.setExit("north", beach);
+        seaBottom.setExit("beach", beach);
         
-        raft.setExit("east", camp);
+        raft.setExit("camp", camp);
     
         currentRoom = beach;
 
