@@ -19,7 +19,9 @@ public class Parser { // transformering fra udstruktureret data til struktureret
         reader = new Scanner(System.in);
     }
 
+
     // Metode, get command, input reads input line.
+
     public Command getCommand() {
         String inputLine;
         String word1 = null;
