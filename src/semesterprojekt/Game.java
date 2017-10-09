@@ -28,8 +28,9 @@ public class Game {
 
     private void createRooms() {
 
-        Room beach, jungle, mountain, cave, camp, raft, seaBottom;
+        Room airport, beach, jungle, mountain, cave, camp, raft, seaBottom;
         
+        airport = new Room("at the airport");
         beach = new Room("at the beach");
         jungle = new Room("in the jungle");
         mountain = new Room("at the mountain");
@@ -42,6 +43,10 @@ public class Game {
         beach.setExit("jungle", jungle);
         beach.setExit("seabottom", seaBottom);
         beach.setExit("camp", camp);
+
+        airport.setExit("west", beach);
+       
+
 
 
         jungle.setExit("mountain", mountain);
@@ -59,7 +64,7 @@ public class Game {
         
         raft.setExit("camp", camp);
     
-        currentRoom = beach;
+        currentRoom = airport;
 
     }
 
