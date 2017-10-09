@@ -27,28 +27,40 @@ public class Game {
  /* The currentRoom is also given a value which is the start location = outside */
 
     private void createRooms() {
-        Room outside, theatre, pub, lab, office;
 
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        Room beach, jungle, mountain, cave, camp, raft, seaBottom;
+        
+        beach = new Room("at the beach");
+        jungle = new Room("in the jungle");
+        mountain = new Room("at the mountain");
+        cave = new Room("in the cave");
+        camp = new Room("in the camp");
+        seaBottom = new Room ("at the bottom of the sea");
+        raft = new Room ("building the raft");
 
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+   
+        beach.setExit("north", jungle);
+        beach.setExit("south", seaBottom);
+        beach.setExit("west", camp);
 
-        theatre.setExit("west", outside);
 
-        pub.setExit("east", outside);
+        jungle.setExit("north", mountain);
+        jungle.setExit("east", cave);
+        jungle.setExit("south", beach);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        mountain.setExit("south", jungle);
 
-        office.setExit("west", lab);
+        cave.setExit("west", jungle);
 
-        currentRoom = outside;
+        camp.setExit("east", beach);
+        camp.setExit("west", raft);
+        
+        seaBottom.setExit("north", beach);
+        
+        raft.setExit("east", camp);
+    
+        currentRoom = beach;
+
     }
 
     /* A method that is initialized when we start the game, that first print out a message with the printWelcome method  
@@ -69,8 +81,9 @@ public class Game {
     /* A method that is used in the play method to print a message when you start the game */
     private void printWelcome() {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to the game Stranded!");
+        System.out.println("Stranded is an adventure game, where you are to "
+                + "find out how to escape the island");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -103,7 +116,7 @@ public class Game {
     /* A method to print a message that show the different commands everytime the command help is used */
     private void printHelp() {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("around on this god forsaken island.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -122,7 +135,7 @@ public class Game {
         /* loop that when next room is equel to null it print a message that says "there is no door" 
            but if nextRoom is not equel null set currentRoom to nextRoom and print the description of the new room*/
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("There is no path!");
         } else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
