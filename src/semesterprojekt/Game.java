@@ -39,27 +39,30 @@ public class Game {
         seaBottom = new Room ("at the bottom of the sea");
         raft = new Room ("building the raft");
 
+   
+        beach.setExit("jungle", jungle);
+        beach.setExit("seabottom", seaBottom);
+        beach.setExit("camp", camp);
+
         airport.setExit("west", beach);
+       
+
+
+
+        jungle.setExit("mountain", mountain);
+        jungle.setExit("cave", cave);
+        jungle.setExit("beach", beach);
+
+        mountain.setExit("jungle", jungle);
+
+        cave.setExit("jungle", jungle);
+
+        camp.setExit("beach", beach);
+        camp.setExit("raft", raft);
         
-        beach.setExit("north", jungle);
-        beach.setExit("south", seaBottom);
-        beach.setExit("west", camp);
-
-
-        jungle.setExit("north", mountain);
-        jungle.setExit("east", cave);
-        jungle.setExit("south", beach);
-
-        mountain.setExit("south", jungle);
-
-        cave.setExit("west", jungle);
-
-        camp.setExit("east", beach);
-        camp.setExit("west", raft);
+        seaBottom.setExit("beach", beach);
         
-        seaBottom.setExit("north", beach);
-        
-        raft.setExit("east", camp);
+        raft.setExit("camp", camp);
     
         currentRoom = airport;
 
