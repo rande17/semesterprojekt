@@ -25,29 +25,24 @@ public class Game {
        constructor from the Room class and then set where you can move to from the different rooms by
        using the method setExit from the Room class */
  /* The currentRoom is also given a value which is the start location = outside */
-
     private void createRooms() {
 
         Room airport, beach, jungle, mountain, cave, camp, raft, seaBottom;
-        
+
         airport = new Room("at the airport");
         beach = new Room("at the beach");
         jungle = new Room("in the jungle");
         mountain = new Room("at the mountain");
         cave = new Room("in the cave");
         camp = new Room("in the camp");
-        seaBottom = new Room ("at the bottom of the sea");
-        raft = new Room ("building the raft");
+        seaBottom = new Room("at the bottom of the sea");
+        raft = new Room("building the raft");
 
-   
         beach.setExit("jungle", jungle);
         beach.setExit("seabottom", seaBottom);
         beach.setExit("camp", camp);
 
         airport.setExit("beach", beach);
-       
-
-
 
         jungle.setExit("mountain", mountain);
         jungle.setExit("cave", cave);
@@ -59,13 +54,12 @@ public class Game {
 
         camp.setExit("beach", beach);
         camp.setExit("raft", raft);
-        
-        seaBottom.setExit("beach", beach);
-        
-        raft.setExit("camp", camp);
-    
-        currentRoom = airport;
 
+        seaBottom.setExit("beach", beach);
+
+        raft.setExit("camp", camp);
+
+        currentRoom = airport;
     }
 
     /* A method that is initialized when we start the game, that first print out a message with the printWelcome method  
