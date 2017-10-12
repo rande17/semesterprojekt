@@ -4,38 +4,48 @@
  * and open the template in the editor.
  */
 package semesterprojekt;
+
 import java.util.Date;
+
 /**
  *
  * @author marti
  */
 public class Item {
-/*
+
+    /*
     Dette dokument er ikke færdigarbejdet
-    */
+     */
     private String itemDescribtion;
+    private int maxCarryWeight;
+    private int totalWeightInBackpack;
+    private int weight;
+    private Date respawnTime;
 
     /*
     Klasse: Item
     Constructor: Item(name, weight, respawnTime, mapLocation(StringArray))
     Metoder: getItemOnMap, setItemOnMap, addItemInInventory, removeItemFromInventory, setItemDescribtions, getItemDescribtion, getRespawnTime
      */
-    
-//Creating a constructor with a parameter-list, Room mapLocation maybe has to be changed
+    //Creating a constructor with a parameter-list, Room mapLocation maybe has to be changed
     Item(String name, int weight, Date respawnTime, Room mapLocation) {
         //This body is left empty for now
     }
 
-    public Item getItemOnMap(Item[] allItems) {
-//        This body is left empty for now
-    }
+//    public Item getItemOnMap(Item[] allItems) {
+////        This body is left empty for now
+//    }
 
     public void setItemOnMap(Item _item, Room location) {
 //        Body is empty
     }
 
+    public int getWeight() {
+        return weight;
+    }
+
     public boolean addItemInInventory(Item _item) {
-        if (item.weight + totalWeightInBackpack < maxCarryWeight) {
+        if (getWeight() + totalWeightInBackpack < maxCarryWeight) {
             //Body is empty
             return true;
         } else {
@@ -48,12 +58,14 @@ public class Item {
     }
 
     public void setItemDescribtions(String newDescribtion) {
-        itemDescribtion=newDescribtion;
+        itemDescribtion = newDescribtion;
     }
-    public String getItemDescribtion(){
+
+    public String getItemDescribtion() {
         return itemDescribtion;
     }
-    public Date getRespawnTime(){
-//        return spawnTime;
+
+    public Date getRespawnTime() {
+        return respawnTime;
     }
 }
