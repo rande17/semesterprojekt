@@ -21,6 +21,8 @@ public class Item {
     private int totalWeightInBackpack;
     private int weight;
     private Date respawnTime;
+    private Room mapLocation;
+    private String name;
 
     /*
     Klasse: Item
@@ -30,12 +32,15 @@ public class Item {
     //Creating a constructor with a parameter-list, Room mapLocation maybe has to be changed
     Item(String name, int weight, Date respawnTime, Room mapLocation) {
         //This body is left empty for now
+        this.name = name;
+        this.weight = weight;
+        this.respawnTime = respawnTime;
+        this.mapLocation = mapLocation;
     }
 
 //    public Item getItemOnMap(Item[] allItems) {
 ////        This body is left empty for now
 //    }
-
     public void setItemOnMap(Item _item, Room location) {
 //        Body is empty
     }
