@@ -38,9 +38,10 @@ public class Item {
         this.mapLocation = mapLocation;
     }
 
-//    public Item getItemOnMap(Item[] allItems) {
-////        This body is left empty for now
-//    }
+    public Item getItemOnMap(Item[] allItems) {
+//        This body is left empty for now
+    }
+
     public void setItemOnMap(Item _item, Room location) {
 //        Body is empty
     }
