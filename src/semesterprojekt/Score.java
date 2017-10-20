@@ -10,7 +10,7 @@ package semesterprojekt;
  * @author rickie
  */
 public  class Score {
-    private static int currentScore = 0;
+    private int currentScore = 0;
     
     public Score(){
         
