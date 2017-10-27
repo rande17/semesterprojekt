@@ -30,7 +30,7 @@ public class Mission {
     public void setMissionComplete(String key) {
         missionStatus.replace(key, false, true);
         //Kalder ukendt klasse
-        Score.addToPoints(missionPoint.get(key));
+//        Score.addToPoints(missionPoint.get(key));
     }
 
 }
