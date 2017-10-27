@@ -27,8 +27,9 @@ public class Game {
        constructor from the Room class and then set where you can move to from the different rooms by
        using the method setExit from the Room class */
  /* The currentRoom is also given a value which is the start location = outside */
-    
     ItemLocation ob1 = new ItemLocation();
+    Inventory ob2 = new Inventory();
+
     private void createRooms() {
 
         Room airport, beach, jungle, mountain, cave, camp, raft, seaBottom;
@@ -42,24 +43,20 @@ public class Game {
         seaBottom = new Room("at the bottom of the sea");
         raft = new Room("building the raft");
 
-
-        
-        
-        
-            airport.setExit("west", beach);
+        airport.setExit("west", beach);
         ob1.addItem(airport, new Item("bottle"));
         ob1.addItem(airport, new Item("boardingpass"));
-        
+
         beach.setExit("north", jungle);
         beach.setExit("south", seaBottom);
         beach.setExit("west", camp);
-       
+
         ob1.addItem(beach, new Item("stone"));
         ob1.addItem(beach, new Item("fish"));
         ob1.addItem(beach, new Item("flint"));
         ob1.addItem(beach, new Item("rope"));
         ob1.addItem(beach, new Item("stick"));
-        
+
         jungle.setExit("north", mountain);
         jungle.setExit("east", cave);
         jungle.setExit("south", beach);
@@ -68,33 +65,32 @@ public class Game {
         ob1.addItem(jungle, new Item("lian"));
         ob1.addItem(jungle, new Item("stone"));
         ob1.addItem(jungle, new Item("stick"));
-        
+
         mountain.setExit("south", jungle);
         ob1.addItem(mountain, new Item("stone"));
         ob1.addItem(mountain, new Item("egg"));
-        
+
         cave.setExit("west", jungle);
         ob1.addItem(cave, new Item("shroom"));
         ob1.addItem(cave, new Item("stone"));
         ob1.addItem(cave, new Item("freshwater"));
         ob1.addItem(cave, new Item("flint"));
-        
+
         camp.setExit("east", beach);
         camp.setExit("west", raft);
         ob1.addItem(camp, new Item(""));
-        
+
         seaBottom.setExit("north", beach);
         ob1.addItem(seaBottom, new Item("backpack"));
         ob1.addItem(seaBottom, new Item("waterBottle"));
         ob1.addItem(seaBottom, new Item("rope"));
-        
+
         raft.setExit("east", camp);
-        
-        
+
         currentRoom = airport;
 
     }
-        
+
     /* A method that is initialized when we start the game, that first print out a message with the printWelcome method  
        and then checks if the game is finished or not with a while loop where finished is set to false when the game start*/
     public void play() {
@@ -141,16 +137,19 @@ public class Game {
             goRoom(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
-        }
-        else if (commandWord == CommandWord.INSPECT) {
-              ArrayList items = ob1.getItems(currentRoom);
-              Item seeItem;
-              
-              for (int i = 0; i < items.size(); i++) {
-              
-                  seeItem = (Item) items.get(i);
-                  System.out.println(seeItem.getName());
+        } else if (commandWord == CommandWord.INSPECT) {
+            ArrayList items = ob1.getItems(currentRoom);
+            Item seeItem;
+
+            for (int i = 0; i < items.size(); i++) {
+
+                seeItem = (Item) items.get(i);
+                System.out.println(seeItem.getName());
             }
+
+        } else if (commandWord == CommandWord.TAKE) {
+            ob1.
+            
         }
         return wantToQuit;
     }
