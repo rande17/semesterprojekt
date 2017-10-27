@@ -1,14 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// Thomas
+
 package semesterprojekt;
 
-/**
- *
- * @author marti
- */
 public class CharacterStatus {
     
-}
+    public void setValue(){
+        
+    }
+    
+//    public int getValue(){
+//        int value;
+//        return value;
+//    }
+//    
+//    public int getMaxValue(){
+//        int maxValue;
+//        return maxValue;
+    }
+    
+//}
