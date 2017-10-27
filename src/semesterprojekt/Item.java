@@ -76,4 +76,8 @@ public class Item {
     public Date getRespawnTime() {
         return respawnTime;
     }
+    
+    public String getName() {
+        return name;
+    }
 }
