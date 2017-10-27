@@ -30,6 +30,11 @@ public class Item {
     Metoder: getItemOnMap, setItemOnMap, addItemInInventory, removeItemFromInventory, setItemDescribtions, getItemDescribtion, getRespawnTime
      */
     //Creating a constructor with a parameter-list, Room mapLocation maybe has to be changed
+    
+    Item(String name){
+        this.name=name;
+    }
+    
     Item(String name, int weight, Date respawnTime, Room mapLocation) {
         //This body is left empty for now
         this.name = name;
@@ -38,13 +43,12 @@ public class Item {
         this.mapLocation = mapLocation;
     }
 
-    public Item getItemOnMap(Item[] allItems) {
-//        This body is left empty for now
-    }
-
-    public void setItemOnMap(Item _item, Room location) {
-//        Body is empty
-    }
+//    public Item getItemOnMap(Item[] allItems) {
+////        This body is left empty for now
+//    }
+//    public void setItemOnMap(Item _item, Room location) {
+////        Body is empty
+//    }
 
     public int getWeight() {
         return weight;
