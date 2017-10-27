@@ -10,5 +10,5 @@ package semesterprojekt;
  * @author marti
  */
 public class Recipe {
-    
+   
 }

@@ -19,9 +19,7 @@ public class Parser { // transformering fra udstruktureret data til struktureret
         reader = new Scanner(System.in);
     }
 
-
     // Metode, get command, input reads input line.
-
     public Command getCommand() {
         String inputLine;
         String word1 = null;
@@ -38,7 +36,6 @@ public class Parser { // transformering fra udstruktureret data til struktureret
                 word2 = tokenizer.next();
             }
         }
-
         return new Command(commands.getCommandWord(word1), word2);
     }
 
