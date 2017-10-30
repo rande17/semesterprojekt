@@ -52,15 +52,6 @@ public class Item {
         return weight;
     }
 
-    public boolean addItemInInventory(Item _item) {
-        if (getWeight() + totalWeightInBackpack < maxCarryWeight) {
-            //Body is empty
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public void removeItemFromInventory(Item _item) {
         //Her skal objekt"tingen" sættes til null, hvis en anden bedre måde ikke fremkommer
     }
@@ -75,5 +66,9 @@ public class Item {
 
     public Date getRespawnTime() {
         return respawnTime;
+    }
+    
+    public String getName() {
+        return name;
     }
 }
