@@ -163,6 +163,7 @@ public class Game {
             if(indexItem >= 0){
                 items2.remove(indexItem);
                 ob1.setItem(currentRoom, items2);
+                System.out.println("You picked up " + command.getSecondWord());
             }
             else
                 System.out.println("could not find item");
