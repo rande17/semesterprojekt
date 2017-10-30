@@ -31,7 +31,8 @@ public class Game {
     ItemLocation ob1 = new ItemLocation();
     Inventory inventory = new Inventory();
 
-        Item debug = new Item("debug");
+    Item debug = new Item("debug");
+
     private void createRooms() {
         Room airport, beach, jungle, mountain, cave, camp, raft, seaBottom;
 
@@ -122,65 +123,123 @@ public class Game {
        not know to the game it print out the message "I don't know what you mean..." and return false*/
  /* It does the same with Help and GO where it print out a message with the use of the method printHelp and goRoom
        and if the command word is quit it return wantToQuit*/
+//    private boolean processCommand(Command command) {
+//        boolean wantToQuit = false;
+//
+//        CommandWord commandWord = command.getCommandWord();
+//
+//        if (commandWord == CommandWord.UNKNOWN) {
+//            System.out.println("I don't know what you mean...");
+//            return false;
+//        }
+//
+//        if (commandWord == CommandWord.HELP ) {
+//            printHelp();
+//        } else if (commandWord == CommandWord.GO) {
+//            goRoom(command);   
+//        } else if (commandWord == CommandWord.SHOW) {
+//            HashMap<Item, Integer> inventoryHM = inventory.getInventory();
+//            for(Item i : inventoryHM.keySet()){
+//                System.out.println(inventoryHM.get(i)+"x"+i.getName());
+//            }
+//        } else if (commandWord == CommandWord.QUIT) {
+//            wantToQuit = quit(command);
+//        } else if (commandWord == CommandWord.INSPECT) {
+//            ArrayList items = ob1.getItems(currentRoom);
+//            Item seeItem;
+//
+//            for (int i = 0; i < items.size(); i++) {
+//
+//                seeItem = (Item) items.get(i);
+//                System.out.println(seeItem.getName());
+//            }
+//
+//       } else if (commandWord == CommandWord.TAKE) {
+//
+//            ArrayList items2 = ob1.getItems(currentRoom);
+//            Item seeItem;
+//            int indexItem = -1;
+//            Item addToInventory = debug;
+//                    
+//            
+//            for (int i = 0; i < items2.size(); i++) {
+//                seeItem = (Item) items2.get(i);
+//                if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
+//                    addToInventory = seeItem;
+//                    indexItem = i;
+//                    break;
+//                }
+//            }
+//            if(indexItem >= 0){
+//                System.out.println(addToInventory.getName());
+//                inventory.addItemInInventory(addToInventory);
+//                items2.remove(indexItem);
+//                ob1.setItem(currentRoom, items2);
+//                System.out.println("You took "+command.getSecondWord());
+//            }
+//            else
+//                System.out.println("could not find " + command.getSecondWord());
+//            
+//        }
+//        
+//        return wantToQuit;
+//    }
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
 
-        if (commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
-
-        if (commandWord == CommandWord.HELP) {
-            printHelp();
-        } else if (commandWord == CommandWord.GO) {
-            goRoom(command);   
-        } else if (commandWord == CommandWord.SHOW) {
-            HashMap<Item, Integer> inventoryHM = inventory.getInventory();
-            for(Item i : inventoryHM.keySet()){
-                System.out.println(inventoryHM.get(i)+"x"+i.getName());
-            }
-        } else if (commandWord == CommandWord.QUIT) {
-            wantToQuit = quit(command);
-        } else if (commandWord == CommandWord.INSPECT) {
-            ArrayList items = ob1.getItems(currentRoom);
-            Item seeItem;
-
-            for (int i = 0; i < items.size(); i++) {
-
-                seeItem = (Item) items.get(i);
-                System.out.println(seeItem.getName());
-            }
-
-       } else if (commandWord == CommandWord.TAKE) {
-
-            ArrayList items2 = ob1.getItems(currentRoom);
-            Item seeItem;
-            int indexItem = -1;
-            Item addToInventory = debug;
-                    
-            
-            for (int i = 0; i < items2.size(); i++) {
-                seeItem = (Item) items2.get(i);
-                if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
-                    addToInventory = seeItem;
-                    indexItem = i;
-                    break;
+        switch (commandWord) {
+            case HELP:
+                printHelp();
+                break;
+            case GO:
+                goRoom(command);
+                break;
+            case SHOW:
+                HashMap<Item, Integer> inventoryHM = inventory.getInventory();
+                for (Item i : inventoryHM.keySet()) {
+                    System.out.println(inventoryHM.get(i) + "x" + i.getName());
                 }
-            }
-            if(indexItem >= 0){
-                System.out.println(addToInventory.getName());
-                inventory.addItemInInventory(addToInventory);
-                items2.remove(indexItem);
-                ob1.setItem(currentRoom, items2);
-                System.out.println("You took "+command.getSecondWord());
-            }
-            else
-                System.out.println("could not find " + command.getSecondWord());
-            
+                break;
+            case QUIT:
+                wantToQuit = quit(command);
+                break;
+            case INSPECT:
+                ArrayList items = ob1.getItems(currentRoom);
+                Item seeItem;
+
+                for (int i = 0; i < items.size(); i++) {
+
+                    seeItem = (Item) items.get(i);
+                    System.out.println(seeItem.getName());
+                }
+                break;
+            case TAKE:
+                ArrayList items2 = ob1.getItems(currentRoom);
+//            Item seeItem;
+                int indexItem = -1;
+                Item addToInventory = debug;
+
+                for (int i = 0; i < items2.size(); i++) {
+                    seeItem = (Item) items2.get(i);
+                    if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
+                        addToInventory = seeItem;
+                        indexItem = i;
+                        break;
+                    }
+                }
+                if (indexItem >= 0) {
+                    System.out.println(addToInventory.getName());
+                    inventory.addItemInInventory(addToInventory);
+                    items2.remove(indexItem);
+                    ob1.setItem(currentRoom, items2);
+                    System.out.println("You took " + command.getSecondWord());
+                } else {
+                    System.out.println("could not find " + command.getSecondWord());
+                }
+                break;
         }
-        
         return wantToQuit;
     }
 
