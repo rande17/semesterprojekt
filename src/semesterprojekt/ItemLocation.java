@@ -14,7 +14,7 @@ import java.util.HashMap;
  */
 public class ItemLocation {
 
-    HashMap<Room, ArrayList> ItemList = new HashMap<>();
+    HashMap<Room, ArrayList> ItemList;
     private ArrayList items;
 
     public ItemLocation() {
@@ -29,11 +29,5 @@ public class ItemLocation {
         items.add(_item);
         ItemList.put(_room, items);
     }
-//    public ArrayList getItems(Room room){
-        ArrayList getItems(Room currentRoom) {
-        return ItemList.get(currentRoom);
-    }
-
-   
 
 }

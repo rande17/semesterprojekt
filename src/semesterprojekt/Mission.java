@@ -16,8 +16,6 @@ public class Mission {
     HashMap<String, Boolean> missionStatus = new HashMap();
     HashMap<String, String> missionInfo = new HashMap();
     HashMap<String, Integer> missionPoint = new HashMap();
-    Score score = new Score();
-
 
     public void addMission(String name, String describtion, int point) {
         missionInfo.put(name, describtion);
@@ -32,11 +30,7 @@ public class Mission {
     public void setMissionComplete(String key) {
         missionStatus.replace(key, false, true);
         //Kalder ukendt klasse
-
-        score.addToPoints(missionPoint.get(key));
+//        Score.addToPoints(missionPoint.get(key));
     }
 
 }
-
-
-
