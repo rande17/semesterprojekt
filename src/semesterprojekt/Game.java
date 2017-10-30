@@ -147,10 +147,28 @@ public class Game {
                 System.out.println(seeItem.getName());
             }
 
-        } else if (commandWord == CommandWord.TAKE) {
-            ob1.
+       } else if (commandWord == CommandWord.TAKE) {
+
+            ArrayList items2 = ob1.getItems(currentRoom);
+            Item seeItem;
+            int indexItem = -1;
+            
+            for (int i = 0; i < items2.size(); i++) {
+                seeItem = (Item) items2.get(i);
+                if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
+                    indexItem = i;
+                    break;
+                }
+            }
+            if(indexItem >= 0){
+                items2.remove(indexItem);
+                ob1.setItem(currentRoom, items2);
+            }
+            else
+                System.out.println("could not find item");
             
         }
+        
         return wantToQuit;
     }
 
