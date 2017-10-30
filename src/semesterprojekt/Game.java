@@ -31,7 +31,8 @@ public class Game {
     ItemLocation ob1 = new ItemLocation();
     Inventory inventory = new Inventory();
 
-        Item debug = new Item("debug");
+    Item debug = new Item("debug");
+
     private void createRooms() {
         Room airport, beach, jungle, mountain, cave, camp, raft, seaBottom;
 
@@ -45,46 +46,46 @@ public class Game {
         raft = new Room("building the raft");
 
         airport.setExit("west", beach);
-        ob1.addItem(airport, new Item("bottle"));
-        ob1.addItem(airport, new Item("boardingpass"));
+        ob1.addItem(airport, new Item("Bottle"));
+        ob1.addItem(airport, new Item("Boardingpass"));
 
         beach.setExit("north", jungle);
         beach.setExit("south", seaBottom);
         beach.setExit("west", camp);
 
-        ob1.addItem(beach, new Item("stone"));
-        ob1.addItem(beach, new Item("fish"));
-        ob1.addItem(beach, new Item("flint"));
-        ob1.addItem(beach, new Item("rope"));
-        ob1.addItem(beach, new Item("stick"));
+        ob1.addItem(beach, new Item("Stone"));
+        ob1.addItem(beach, new Item("Fish"));
+        ob1.addItem(beach, new Item("Flint"));
+        ob1.addItem(beach, new Item("Rope"));
+        ob1.addItem(beach, new Item("Stick"));
 
         jungle.setExit("north", mountain);
         jungle.setExit("east", cave);
         jungle.setExit("south", beach);
-        ob1.addItem(jungle, new Item("berry"));
-        ob1.addItem(jungle, new Item("lumber"));
-        ob1.addItem(jungle, new Item("lian"));
-        ob1.addItem(jungle, new Item("stone"));
-        ob1.addItem(jungle, new Item("stick"));
+        ob1.addItem(jungle, new Item("Berry"));
+        ob1.addItem(jungle, new Item("Lumber"));
+        ob1.addItem(jungle, new Item("Lian"));
+        ob1.addItem(jungle, new Item("Stone"));
+        ob1.addItem(jungle, new Item("Stick"));
 
         mountain.setExit("south", jungle);
-        ob1.addItem(mountain, new Item("stone"));
-        ob1.addItem(mountain, new Item("egg"));
+        ob1.addItem(mountain, new Item("Stone"));
+        ob1.addItem(mountain, new Item("Egg"));
 
         cave.setExit("west", jungle);
-        ob1.addItem(cave, new Item("shroom"));
-        ob1.addItem(cave, new Item("stone"));
-        ob1.addItem(cave, new Item("freshwater"));
-        ob1.addItem(cave, new Item("flint"));
+        ob1.addItem(cave, new Item("Shroom"));
+        ob1.addItem(cave, new Item("Stone"));
+        ob1.addItem(cave, new Item("Freshwater"));
+        ob1.addItem(cave, new Item("Flint"));
 
         camp.setExit("east", beach);
         camp.setExit("west", raft);
         ob1.addItem(camp, new Item(""));
 
         seaBottom.setExit("north", beach);
-        ob1.addItem(seaBottom, new Item("backpack"));
-        ob1.addItem(seaBottom, new Item("waterBottle"));
-        ob1.addItem(seaBottom, new Item("rope"));
+        ob1.addItem(seaBottom, new Item("Backpack"));
+        ob1.addItem(seaBottom, new Item("WaterBottle"));
+        ob1.addItem(seaBottom, new Item("Rope"));
 
         raft.setExit("east", camp);
 
@@ -135,51 +136,17 @@ public class Game {
         if (commandWord == CommandWord.HELP) {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
-            goRoom(command);   
+            goRoom(command);
         } else if (commandWord == CommandWord.SHOW) {
-            HashMap<Item, Integer> inventoryHM = inventory.getInventory();
-            for(Item i : inventoryHM.keySet()){
-                System.out.println(inventoryHM.get(i)+"x"+i.getName());
-            }
+            showInventory(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.INSPECT) {
-            ArrayList items = ob1.getItems(currentRoom);
-            Item seeItem;
-
-            for (int i = 0; i < items.size(); i++) {
-
-                seeItem = (Item) items.get(i);
-                System.out.println(seeItem.getName());
-            }
-
-       } else if (commandWord == CommandWord.TAKE) {
-
-            ArrayList items2 = ob1.getItems(currentRoom);
-            Item seeItem;
-            int indexItem = -1;
-            Item addToInventory = debug;
-                    
-            
-            for (int i = 0; i < items2.size(); i++) {
-                seeItem = (Item) items2.get(i);
-                if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
-                    addToInventory = seeItem;
-                    indexItem = i;
-                    break;
-                }
-            }
-            if(indexItem >= 0){
-                System.out.println(addToInventory.getName());
-                inventory.addItemInInventory(addToInventory);
-                items2.remove(indexItem);
-                ob1.setItem(currentRoom, items2);
-            }
-            else
-                System.out.println("could not find " + command.getSecondWord());
-            
+            InspectRoom(command);
+        } else if (commandWord == CommandWord.TAKE) {
+            TakeItem(command);
         }
-        
+
         return wantToQuit;
     }
 
@@ -209,6 +176,49 @@ public class Game {
         } else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+        }
+    }
+
+    private void showInventory(Command command) {
+
+        HashMap<Item, Integer> inventoryHM = inventory.getInventory();
+        for (Item i : inventoryHM.keySet()) {
+            System.out.println(inventoryHM.get(i) + "x" + i.getName());
+        }
+    }
+
+    private void InspectRoom(Command command) {
+        ArrayList items = ob1.getItems(currentRoom);
+        Item seeItem;
+
+        for (int i = 0; i < items.size(); i++) {
+
+            seeItem = (Item) items.get(i);
+            System.out.println(seeItem.getName());
+        }
+    }
+
+    private void TakeItem(Command command) {
+        ArrayList items2 = ob1.getItems(currentRoom);
+        Item seeItem;
+        int indexItem = -1;
+        Item addToInventory = debug;
+
+        for (int i = 0; i < items2.size(); i++) {
+            seeItem = (Item) items2.get(i);
+            if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
+                addToInventory = seeItem;
+                indexItem = i;
+                break;
+            }
+        }
+        if (indexItem >= 0) {
+            System.out.println(addToInventory.getName());
+            inventory.addItemInInventory(addToInventory);
+            items2.remove(indexItem);
+            ob1.setItem(currentRoom, items2);
+        } else {
+            System.out.println("could not find " + command.getSecondWord());
         }
     }
 
