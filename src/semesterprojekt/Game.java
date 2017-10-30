@@ -1,6 +1,7 @@
 package semesterprojekt;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -28,10 +29,10 @@ public class Game {
        using the method setExit from the Room class */
  /* The currentRoom is also given a value which is the start location = outside */
     ItemLocation ob1 = new ItemLocation();
-    Inventory ob2 = new Inventory();
+    Inventory inventory = new Inventory();
 
+        Item debug = new Item("debug");
     private void createRooms() {
-
         Room airport, beach, jungle, mountain, cave, camp, raft, seaBottom;
 
         airport = new Room("at the airport");
@@ -134,7 +135,12 @@ public class Game {
         if (commandWord == CommandWord.HELP) {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
-            goRoom(command);
+            goRoom(command);   
+        } else if (commandWord == CommandWord.SHOW) {
+            HashMap<Item, Integer> inventoryHM = inventory.getInventory();
+            for(Item i : inventoryHM.keySet()){
+                System.out.println(inventoryHM.get(i)+"x"+i.getName());
+            }
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.INSPECT) {
@@ -152,20 +158,25 @@ public class Game {
             ArrayList items2 = ob1.getItems(currentRoom);
             Item seeItem;
             int indexItem = -1;
+            Item addToInventory = debug;
+                    
             
             for (int i = 0; i < items2.size(); i++) {
                 seeItem = (Item) items2.get(i);
                 if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
+                    addToInventory = seeItem;
                     indexItem = i;
                     break;
                 }
             }
             if(indexItem >= 0){
+                System.out.println(addToInventory.getName());
+                inventory.addItemInInventory(addToInventory);
                 items2.remove(indexItem);
                 ob1.setItem(currentRoom, items2);
             }
             else
-                System.out.println("could not find item");
+                System.out.println("could not find " + command.getSecondWord());
             
         }
         

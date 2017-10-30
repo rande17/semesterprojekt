@@ -17,9 +17,9 @@ public class Item {
     Dette dokument er ikke færdigarbejdet
      */
     private String itemDescribtion;
-    private int maxCarryWeight;
+    private int maxCarryWeight = 10;
     private int totalWeightInBackpack;
-    private int weight;
+    private int weight = 1;
     private Date respawnTime;
     private Room mapLocation;
     private String name;
