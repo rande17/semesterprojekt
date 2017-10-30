@@ -33,6 +33,10 @@ public class ItemLocation {
         ArrayList getItems(Room currentRoom) {
         return ItemList.get(currentRoom);
     }
+    
+public void setItem(Room _room, ArrayList itemsInRoom){
+    ItemList.replace(_room, itemsInRoom);
+}
 
    
 
