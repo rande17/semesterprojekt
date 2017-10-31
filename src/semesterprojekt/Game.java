@@ -30,7 +30,9 @@ public class Game {
  /* The currentRoom is also given a value which is the start location = outside */
     ItemLocation ob1 = new ItemLocation();
     Inventory inventory = new Inventory();
-
+    NPC npc1 = new NPC();
+    NPC npc2 = new NPC();
+    NPC npc3 = new NPC();
     Item debug = new Item("debug");
 
     private void createRooms() {
@@ -67,17 +69,29 @@ public class Game {
         ob1.addItem(jungle, new Item("Lian"));
         ob1.addItem(jungle, new Item("Stone"));
         ob1.addItem(jungle, new Item("Stick"));
-
+        
+        npc1.NPC("Good guy", jungle);
+        npc1.setDescribtion("The survivor of the plane crash look to be some kind of veteran soldier, but he is heavly injured on his right leg so he cant move ");
+        npc1.addDialog("If you want to survive on this GOD forsaken island, you must first find food and shelter");
+        
         mountain.setExit("south", jungle);
         ob1.addItem(mountain, new Item("Stone"));
         ob1.addItem(mountain, new Item("Egg"));
-
+        
+        npc3.NPC("Evil guy", mountain);
+     
         cave.setExit("west", jungle);
         ob1.addItem(cave, new Item("Shroom"));
         ob1.addItem(cave, new Item("Stone"));
         ob1.addItem(cave, new Item("Freshwater"));
         ob1.addItem(cave, new Item("Flint"));
-
+        
+        npc2.NPC("Mysterious crab", cave);
+        npc2.setDescribtion("A mysterious crab that you dont really get why can talk");
+        npc2.addDialog("MUHAHAHA i'm the finest and most knowledgeable crab of them all mr.Crab and know this island like the back of my hand.... oh i mean claw"
+                     + "\n SO if you want the rarest item you can find on this island, you must first help me find some stuff ");
+        
+        
         camp.setExit("east", beach);
         camp.setExit("west", raft);
         ob1.addItem(camp, new Item(""));
@@ -92,6 +106,13 @@ public class Game {
         currentRoom = airport;
 
     }
+    
+//    private void createItems(){
+//    
+//    ob1.addItem(airport, new Item("Bottle"));
+//    ob1.addItem(airport, new Item("Boardingpass"));    
+//    }
+    
 
     /* A method that is initialized when we start the game, that first print out a message with the printWelcome method  
        and then checks if the game is finished or not with a while loop where finished is set to false when the game start*/
@@ -104,7 +125,7 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-
+        
         System.out.println("Thank you for playing.  Good bye.");
     }
 
@@ -137,7 +158,7 @@ public class Game {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
             goRoom(command);
-        } else if (commandWord == CommandWord.SHOW) {
+        } else if (commandWord == CommandWord.INVENTORY) {
             showInventory(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
@@ -145,8 +166,12 @@ public class Game {
             InspectRoom(command);
         } else if (commandWord == CommandWord.TAKE) {
             TakeItem(command);
-        }
-
+        } else if (commandWord == CommandWord.TALK) {
+//            TalkTo(command);
+    }
+//        else if (commandWord == CommandWord.DROP) {
+//            DropItem(command);
+//        }
         return wantToQuit;
     }
 
@@ -221,8 +246,38 @@ public class Game {
             System.out.println("could not find " + command.getSecondWord());
         }
     }
-
-    //method that when....
+    
+//     private void TalkTo(Command command){
+//        ArrayList talk =  
+//        if(npc1 == currentRoom)
+//          getdialog();
+//     }
+        
+//    private void DropItem(Command command) {
+//        HashMap items3 = inventory.getInventory();
+//        Item seeItem;
+//        int indexItem = -1;
+//        Item DropFromInventory = debug;
+//
+//        for (int i = 0; i < items3.size(); i++) {
+//            seeItem = (Item) items3.get(i);
+//            if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
+//                DropFromInventory = seeItem;
+//                indexItem = i;
+//                break;
+//            }
+//            
+//        }
+//        if (indexItem >= 0) {
+//            inventory.dropItemInventory(DropFromInventory);
+//            items3.remove(indexItem);
+//        } else {
+//            System.out.println("Can't drop item that isn't in inventory " + command.getSecondWord());
+//        }
+//    }
+    
+    
+    //method to quit the game and if there is a second word it print out a line "Quit what"
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
