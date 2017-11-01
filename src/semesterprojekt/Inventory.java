@@ -12,7 +12,9 @@ import java.util.*;
  * @author marti
  */
 public class Inventory {
-
+    
+    private int inventoryMaxQuantity = 10;
+    private int currentQuantity = 0;
     private int inventoryMaxWeight = 10; //set default inventory weight 
     private int currentInventoryWeight = 0;
     private HashMap<String, Integer> inventory = new HashMap<>(); //Create a HashMap
@@ -36,7 +38,7 @@ public class Inventory {
         String itemInInventory = "";
         String itemName = _item.getName();
 
-        if (_item.getWeight() + currentInventoryWeight < inventoryMaxWeight) {
+        if (currentQuantity < inventoryMaxQuantity) {
             if (inventory.containsKey(itemName)) {
                 quantity = inventory.get(itemName) + 1;
 
@@ -44,10 +46,28 @@ public class Inventory {
                 quantity = 1;
             }
             inventory.put(itemName, quantity);
-
+            currentQuantity += 1;
         } else {
             System.out.println("You can't pickup this item");
         }
+    }
+
+    // Drop item from inventory and add to Room 
+    public void dropItemInventory(String _string) {
+        int quantity = inventory.get(_string) - 1;
+
+        if (inventory.get(_string) <= 1) {
+            inventory.remove(_string);
+
+        } else {
+            inventory.replace(_string, quantity);
+
+        }
+        
+        currentQuantity = currentQuantity - 1;
+//        getItems itemList
+//        .put(_item, quantity);
+//        quantity = itemList.get(_item)
     }
 
 //get current inventory weight
