@@ -18,14 +18,15 @@ public class NPC {
     private ArrayList<String> dialog = new ArrayList<String>();
     private Room currentPosition;
 
-    
     // Constructor, creates NPC's
-    public NPC(String name, Room currentPosition) {
+    public NPC() {
+    }
+
+    // method that set the name and location of the NPC's
+    public void NPC(String name, Room currentPosition) {
 
     }
 
-    
-    
     public void addDialog(String _dialog) {
         dialog.add(_dialog);
     }

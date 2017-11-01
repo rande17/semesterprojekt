@@ -220,7 +220,9 @@ public class Game {
 
             seeItem = (Item) items.get(i);
             System.out.println(seeItem.getName());
+            System.out.println();    
         }
+        
     }
 
     private void TakeItem(Command command) {
