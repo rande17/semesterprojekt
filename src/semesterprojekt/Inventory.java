@@ -14,8 +14,8 @@ import java.util.*;
 public class Inventory {
 
     private int inventoryMaxWeight = 10; //set default inventory weight 
-    private int currentInventoryWeight;
-    private HashMap<Item, Integer> inventory = new HashMap<>(); //Create a HashMap
+    private int currentInventoryWeight = 0;
+    private HashMap<String, Integer> inventory = new HashMap<>(); //Create a HashMap
 //constuctor  
 
     Inventory() {
@@ -32,9 +32,18 @@ public class Inventory {
     }
 
     public void addItemInInventory(Item _item) {
+        int quantity = 0;
+        String itemInInventory = "";
+        String itemName = _item.getName();
+
         if (_item.getWeight() + currentInventoryWeight < inventoryMaxWeight) {
-            int quantity = inventory.get(_item) + 1;
-            inventory.put(_item, quantity);
+            if (inventory.containsKey(itemName)) {
+                quantity = inventory.get(itemName) + 1;
+
+            } else {
+                quantity = 1;
+            }
+            inventory.put(itemName, quantity);
 
         } else {
             System.out.println("You can't pickup this item");
@@ -46,9 +55,10 @@ public class Inventory {
         currentInventoryWeight = 0;
         //Iterates through list of item in inventory to get current inventory weight 
 
-        for (Item items : inventory.keySet()) {
+        for (String items : inventory.keySet()) {
             int quantity = inventory.get(items);
-            int weight = items.getWeight();
+//            int weight = items.getWeight();
+            int weight = 1;
             int thisItemWeight = quantity * weight;
             currentInventoryWeight += thisItemWeight;
 
@@ -82,10 +92,13 @@ public class Inventory {
 //            System.out.println("Inventory is full");
 //        }
 //    }
-
-    public void dropItemInventory() {
-    }
-
+//    public void dropItemInventory(Item _item) {
+//        if(inventory.containsKey(_item)){
+//        
+//        inventory.remove(_item);
+//        }
+//    }
+//   
 //Check max weigth of the inventory everytime you pick up a new item
 //    public boolean checkInventoryMaxWeigth() {
 //        if (currentInventoryWeight + item.getWeight <= inventoryMaxWeight) {

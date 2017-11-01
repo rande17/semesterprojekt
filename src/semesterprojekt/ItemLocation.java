@@ -14,7 +14,7 @@ import java.util.HashMap;
  */
 public class ItemLocation {
 
-    HashMap<Room, ArrayList> ItemList = new HashMap<>();
+    HashMap<Room, ArrayList> itemList = new HashMap<>();
     private ArrayList items;
 
     public ItemLocation() {
@@ -22,22 +22,20 @@ public class ItemLocation {
     }
 
     public void addItem(Room _room, Item _item) {
-        if (!ItemList.containsKey(_room)) {
-            ItemList.put(_room, new ArrayList());
+        if (!itemList.containsKey(_room)) {
+            itemList.put(_room, new ArrayList());
         }
-        items = ItemList.get(_room);
+        items = itemList.get(_room);
         items.add(_item);
-        ItemList.put(_room, items);
+        itemList.put(_room, items);
     }
 //    public ArrayList getItems(Room room){
         ArrayList getItems(Room currentRoom) {
-        return ItemList.get(currentRoom);
+        return itemList.get(currentRoom);
     }
     
 public void setItem(Room _room, ArrayList itemsInRoom){
-    ItemList.replace(_room, itemsInRoom);
+    itemList.replace(_room, itemsInRoom);
 }
-
-   
 
 }

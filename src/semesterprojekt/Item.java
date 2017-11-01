@@ -17,9 +17,9 @@ public class Item {
     Dette dokument er ikke færdigarbejdet
      */
     private String itemDescribtion;
-    private int maxCarryWeight;
+    private int maxCarryWeight = 10;
     private int totalWeightInBackpack;
-    private int weight;
+    private int weight = 1;
     private Date respawnTime;
     private Room mapLocation;
     private String name;
@@ -34,7 +34,13 @@ public class Item {
         this.name = name;
     }
 
-    Item(String name, int weight, Date respawnTime, Room mapLocation) {
+    Item(String name, int weight) {
+        this.name = name;
+        this.weight = weight;
+    }
+
+    Item(String name, int weight, Date respawnTime, Room mapLocation
+    ) {
         //This body is left empty for now
         this.name = name;
         this.weight = weight;
@@ -67,7 +73,7 @@ public class Item {
     public Date getRespawnTime() {
         return respawnTime;
     }
-    
+
     public String getName() {
         return name;
     }
