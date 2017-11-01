@@ -88,8 +88,13 @@ public class Inventory {
 //        }
 //    }
 
-    public void dropItemInventory() {
-    }
+//    public void dropItemInventory(Item _item) {
+//        if(inventory.containsKey(_item)){
+//        
+//        inventory.remove(_item);
+//        }
+//    }
+//   
 
 //Check max weigth of the inventory everytime you pick up a new item
 //    public boolean checkInventoryMaxWeigth() {
