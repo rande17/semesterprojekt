@@ -29,7 +29,7 @@ public class Game {
        constructor from the Room class and then set where you can move to from the different rooms by
        using the method setExit from the Room class */
  /* The currentRoom is also given a value which is the start location = outside */
-    ItemLocation ob1 = new ItemLocation();
+    ItemLocation itemLocation = new ItemLocation();
     Inventory inventory = new Inventory();
     NPC npc1 = new NPC();
     NPC npc2 = new NPC();
@@ -49,43 +49,43 @@ public class Game {
         raft = new Room("building the raft");
 
         airport.setExit("west", beach);
-        ob1.addItem(airport, new Item("Bottle"));
-        ob1.addItem(airport, new Item("Boardingpass"));
+        itemLocation.addItem(airport, new Item("Bottle"));
+        itemLocation.addItem(airport, new Item("Boardingpass"));
 
         beach.setExit("north", jungle);
         beach.setExit("south", seaBottom);
         beach.setExit("west", camp);
 
-        ob1.addItem(beach, new Item("Stone"));
-        ob1.addItem(beach, new Item("Fish"));
-        ob1.addItem(beach, new Item("Flint"));
-        ob1.addItem(beach, new Item("Rope"));
-        ob1.addItem(beach, new Item("Stick"));
+        itemLocation.addItem(beach, new Item("Stone"));
+        itemLocation.addItem(beach, new Item("Fish"));
+        itemLocation.addItem(beach, new Item("Flint"));
+        itemLocation.addItem(beach, new Item("Rope"));
+        itemLocation.addItem(beach, new Item("Stick"));
 
         jungle.setExit("north", mountain);
         jungle.setExit("east", cave);
         jungle.setExit("south", beach);
-        ob1.addItem(jungle, new Item("Berry"));
-        ob1.addItem(jungle, new Item("Lumber"));
-        ob1.addItem(jungle, new Item("Lian"));
-        ob1.addItem(jungle, new Item("Stone"));
-        ob1.addItem(jungle, new Item("Stick"));
+        itemLocation.addItem(jungle, new Item("Berry"));
+        itemLocation.addItem(jungle, new Item("Lumber"));
+        itemLocation.addItem(jungle, new Item("Lian"));
+        itemLocation.addItem(jungle, new Item("Stone"));
+        itemLocation.addItem(jungle, new Item("Stick"));
 
         npc1.NPC("Good guy", jungle);
         npc1.setDescribtion("The survivor of the plane crash look to be some kind of veteran soldier, but he is heavly injured on his right leg so he cant move ");
         npc1.addDialog("If you want to survive on this GOD forsaken island, you must first find food and shelter");
 
         mountain.setExit("south", jungle);
-        ob1.addItem(mountain, new Item("Stone"));
-        ob1.addItem(mountain, new Item("Egg"));
+        itemLocation.addItem(mountain, new Item("Stone"));
+        itemLocation.addItem(mountain, new Item("Egg"));
 
         npc3.NPC("Evil guy", mountain);
 
         cave.setExit("west", jungle);
-        ob1.addItem(cave, new Item("Shroom"));
-        ob1.addItem(cave, new Item("Stone"));
-        ob1.addItem(cave, new Item("Freshwater"));
-        ob1.addItem(cave, new Item("Flint"));
+        itemLocation.addItem(cave, new Item("Shroom"));
+        itemLocation.addItem(cave, new Item("Stone"));
+        itemLocation.addItem(cave, new Item("Freshwater"));
+        itemLocation.addItem(cave, new Item("Flint"));
 
         npc2.NPC("Mysterious crab", cave);
         npc2.setDescribtion("A mysterious crab that you dont really get why can talk");
@@ -94,12 +94,12 @@ public class Game {
 
         camp.setExit("east", beach);
         camp.setExit("west", raft);
-        ob1.addItem(camp, new Item(""));
+        itemLocation.addItem(camp, new Item(""));
 
         seaBottom.setExit("north", beach);
-        ob1.addItem(seaBottom, new Item("Backpack"));
-        ob1.addItem(seaBottom, new Item("WaterBottle"));
-        ob1.addItem(seaBottom, new Item("Rope"));
+        itemLocation.addItem(seaBottom, new Item("Backpack"));
+        itemLocation.addItem(seaBottom, new Item("WaterBottle"));
+        itemLocation.addItem(seaBottom, new Item("Rope"));
 
         raft.setExit("east", camp);
 
@@ -204,32 +204,33 @@ public class Game {
     private void showInventory(Command command) {
 
         HashMap<String, Integer> inventoryHM = inventory.getInventory();
+        
         for (String i : inventoryHM.keySet()) {
+            System.out.println("Items in inventory is: ");
             System.out.println(inventoryHM.get(i) + "x" + i);
         }
     }
 
     private void InspectRoom(Command command) {
-        ArrayList items = ob1.getItems(currentRoom);
+        ArrayList items = itemLocation.getItems(currentRoom);
         Item seeItem;
 
         for (int i = 0; i < items.size(); i++) {
 
             seeItem = (Item) items.get(i);
             System.out.println(seeItem.getName());
-            System.out.println();
         }
 
     }
 
     private void TakeItem(Command command) {
-        ArrayList items2 = ob1.getItems(currentRoom);
+        ArrayList currentRoomItem = itemLocation.getItems(currentRoom);
         Item seeItem;
         int indexItem = -1;
         Item addToInventory = debug;
 
-        for (int i = 0; i < items2.size(); i++) {
-            seeItem = (Item) items2.get(i);
+        for (int i = 0; i < currentRoomItem .size(); i++) {
+            seeItem = (Item) currentRoomItem.get(i);
             if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
                 addToInventory = seeItem;
                 indexItem = i;
@@ -238,10 +239,10 @@ public class Game {
         }
 
         if (indexItem >= 0) {
-            System.out.println(addToInventory.getName());
+            System.out.println("Item has been added to inventory: " + addToInventory.getName());
             inventory.addItemInInventory(addToInventory);
-            items2.remove(indexItem);
-            ob1.setItem(currentRoom, items2);
+            currentRoomItem .remove(indexItem);
+            itemLocation.setItem(currentRoom, currentRoomItem);
         } else {
             System.out.println("could not find " + command.getSecondWord());
         }
@@ -264,7 +265,7 @@ public class Game {
 
         while (itte.hasNext()) {
             HashMap.Entry liste = (HashMap.Entry) itte.next();
-            String itemName= (String)liste.getKey();
+            String itemName = (String)liste.getKey();
                 if (itemName.equalsIgnoreCase(command.getSecondWord())) {
                     dropFromInventory = itemName;
                     indexItem = itemName;
@@ -273,6 +274,8 @@ public class Game {
         }
         if (!indexItem.equals("")) {
                         inventory.dropItemInventory(indexItem);
+                        System.out.println("You have dropped: " + indexItem);
+
         }else {
             System.out.println("Can't drop item that isn't in inventory " + command.getSecondWord());
         }
