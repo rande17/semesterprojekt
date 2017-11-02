@@ -217,7 +217,7 @@ public class Game {
         for (int i = 0; i < items.size(); i++) {
 
             seeItem = (Item) items.get(i);
-            System.out.println(seeItem.getName());
+            System.out.print(seeItem.getName());
             System.out.println();
         }
 
