@@ -158,14 +158,14 @@ public class Game {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
             goRoom(command);
-        } else if (commandWord == CommandWord.INVENTORY) {
+        } else if (commandWord == CommandWord.SHOW) {
             showInventory(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.INSPECT) {
-            InspectRoom(command);
+            inspectRoom(command);
         } else if (commandWord == CommandWord.TAKE) {
-            TakeItem(command);
+            takeItem(command);
         } else if (commandWord == CommandWord.TALK) {
 //            TalkTo(command);
     }
@@ -212,20 +212,20 @@ public class Game {
         }
     }
 
-    private void InspectRoom(Command command) {
+    private void inspectRoom(Command command) {
         ArrayList items = ob1.getItems(currentRoom);
         Item seeItem;
 
         for (int i = 0; i < items.size(); i++) {
 
             seeItem = (Item) items.get(i);
-            System.out.println(seeItem.getName());
+            System.out.print(seeItem.getName());
             System.out.println();    
         }
         
     }
 
-    private void TakeItem(Command command) {
+    private void takeItem(Command command) {
         ArrayList items2 = ob1.getItems(currentRoom);
         Item seeItem;
         int indexItem = -1;
