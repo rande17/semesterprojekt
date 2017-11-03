@@ -31,9 +31,6 @@ public class Game {
  /* The currentRoom is also given a value which is the start location = outside */
     ItemLocation itemLocation = new ItemLocation();
     Inventory inventory = new Inventory();
-    NPC npc1 = new NPC();
-    NPC npc2 = new NPC();
-    NPC npc3 = new NPC();
     Item debug = new Item("debug");
     Mission mission1 = new Mission();
     Mission mission2 = new Mission();
@@ -75,7 +72,7 @@ public class Game {
         itemLocation.addItem(jungle, new Item("Stone"));
         itemLocation.addItem(jungle, new Item("Stick"));
 
-        npc1.NPC("Good guy", jungle);
+        NPC npc1 = new NPC("Good guy", jungle);
         npc1.setDescribtion("The survivor of the plane crash look to be some kind of veteran soldier, but he is heavly injured on his right leg so he cant move ");
         npc1.addDialog("If you want to survive on this GOD forsaken island, you must first find food and shelter");
 
@@ -83,7 +80,7 @@ public class Game {
         itemLocation.addItem(mountain, new Item("Stone"));
         itemLocation.addItem(mountain, new Item("Egg"));
 
-        npc3.NPC("Evil guy", mountain);
+        NPC npc3 = new NPC("Evil guy", mountain);
 
         cave.setExit("west", jungle);
         itemLocation.addItem(cave, new Item("Shroom"));
@@ -91,7 +88,7 @@ public class Game {
         itemLocation.addItem(cave, new Item("Freshwater"));
         itemLocation.addItem(cave, new Item("Flint"));
 
-        npc2.NPC("Mysterious crab", cave);
+        NPC npc2 = new NPC("Mysterious crab", cave);
         npc2.setDescribtion("A mysterious crab that you dont really get why can talk");
         npc2.addDialog("MUHAHAHA i'm the finest and most knowledgeable crab of them all mr.Crab and know this island like the back of my hand.... oh i mean claw"
                 + "\n SO if you want the rarest item you can find on this island, you must first help me find some stuff ");
