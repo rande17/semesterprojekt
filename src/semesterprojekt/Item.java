@@ -1,21 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package semesterprojekt;
 
 import java.util.Date;
 
-/**
- *
- * @author marti
- */
 public class Item {
 
-    /*
-    Dette dokument er ikke færdigarbejdet
-     */
+    // Data field
     private String itemDescribtion;
     private int maxCarryWeight = 10;
     private int totalWeightInBackpack;
@@ -24,56 +13,82 @@ public class Item {
     private Room mapLocation;
     private String name;
 
-    /*
-    Klasse: Item
-    Constructor: Item(name, weight, respawnTime, mapLocation(StringArray))
-    Metoder: getItemOnMap, setItemOnMap, addItemInInventory, removeItemFromInventory, setItemDescribtions, getItemDescribtion, getRespawnTime
+    /**
+     *
+     * @param _name
      */
-    //Creating a constructor with a parameter-list, Room mapLocation maybe has to be changed
-    Item(String name) {
-        this.name = name;
+    // Constructor, with arg, Room mapLocation maybe has to be changed
+    Item(String _name) {
+        name = _name;
     }
 
-    Item(String name, int weight) {
-        this.name = name;
-        this.weight = weight;
+    /**
+     *
+     * @param _name
+     * @param _weight
+     */
+    // Constructor
+    Item(String _name, int _weight) {
+        name = _name;
+        weight = _weight;
     }
 
-    Item(String name, int weight, Date respawnTime, Room mapLocation
-    ) {
-        //This body is left empty for now
-        this.name = name;
-        this.weight = weight;
-        this.respawnTime = respawnTime;
-        this.mapLocation = mapLocation;
+    /**
+     *
+     * @param _name
+     * @param _weight
+     * @param _respawnTime
+     * @param _mapLocation
+     */
+    // Constructor
+    Item(String _name, int _weight, Date _respawnTime, Room _mapLocation) {
+        name = _name;
+        weight = _weight;
+        respawnTime = _respawnTime;
+        mapLocation = _mapLocation;
     }
 
-//    public Item getItemOnMap(Item[] allItems) {
-////        This body is left empty for now
-//    }
-//    public void setItemOnMap(Item _item, Room location) {
-////        Body is empty
-//    }
+    /**
+     *
+     * @return
+     */
+    // Method, get weight
     public int getWeight() {
         return weight;
     }
 
-    public void removeItemFromInventory(Item _item) {
-        //Her skal objekt"tingen" sættes til null, hvis en anden bedre måde ikke fremkommer
-    }
-
+    /**
+     *
+     * @param newDescribtion
+     */
+    // Method, set item desribtion
     public void setItemDescribtions(String newDescribtion) {
         itemDescribtion = newDescribtion;
     }
 
+    /**
+     *
+     * @return
+     */
+    // Method, get item describtion
     public String getItemDescribtion() {
         return itemDescribtion;
     }
 
+    /**
+     *
+     * @return
+     */
+    // Method, get respawntime
     public Date getRespawnTime() {
         return respawnTime;
     }
 
+    /**
+     *
+     * @return
+     */
+    // Method, get name
     public String getName() {
         return name;
     }
