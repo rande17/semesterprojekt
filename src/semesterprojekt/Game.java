@@ -35,6 +35,10 @@ public class Game {
     NPC npc2 = new NPC();
     NPC npc3 = new NPC();
     Item debug = new Item("debug");
+    Mission mission1 = new Mission();
+    Mission mission2 = new Mission();
+    Mission mission3 = new Mission();
+    
 
     private void createRooms() {
         Room airport, beach, jungle, mountain, cave, camp, raft, seaBottom;
@@ -107,6 +111,12 @@ public class Game {
 
     }
 
+      private void createMissions(){
+          mission1.addMission("Getting started", "First item", 10);
+          mission2.addMission("Adventure", "Visited the whole island", 20);
+          mission3.addMission("Waking up", "Discovered the beach", 5);
+          
+      }
 //    private void createItems(){
 //    
 //    ob1.addItem(airport, new Item("Bottle"));
@@ -161,15 +171,16 @@ public class Game {
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.INSPECT) {
-            InspectRoom(command);
+            inspectRoom(command);
         } else if (commandWord == CommandWord.TAKE) {
-            TakeItem(command);
+            takeItem(command);
         } else if (commandWord == CommandWord.TALK) {
 //            TalkTo(command);
         } else if (commandWord == CommandWord.DROP) {
-            DropItem(command);
-        }
-        return wantToQuit;
+            dropItem(command);
+        } else if (commandWord == CommandWord.MISSION){
+//            showMissions(command); 
+        } return wantToQuit;
     }
 
     /* A method to print a message that show the different commands everytime the command help is used */
@@ -211,7 +222,7 @@ public class Game {
         }
     }
 
-    private void InspectRoom(Command command) {
+    private void inspectRoom(Command command) {
         ArrayList items = itemLocation.getItems(currentRoom);
         Item seeItem;
 
@@ -223,7 +234,7 @@ public class Game {
 
     }
 
-    private void TakeItem(Command command) {
+    private void takeItem(Command command) {
         ArrayList currentRoomItem = itemLocation.getItems(currentRoom);
         Item seeItem;
         int indexItem = -1;
@@ -255,7 +266,7 @@ public class Game {
 //     }
     
 //
-    private void DropItem(Command command) {
+    private void dropItem(Command command) {
         HashMap newInventory = inventory.getInventory();
         Iterator itte = newInventory.entrySet().iterator();
         String seeItem;
@@ -281,6 +292,16 @@ public class Game {
         }
 
     }
+    
+//    private void showMissions(Command command){
+//      
+//      HashMap<String, String> viewMission = mission.getMissionDescribtion(key);
+//
+//        for (String i : viewMission.keySet()) {
+//            System.out.println("Your missions are: ");
+//            System.out.println(viewMission.get(i) + mission.missionStatus + mission.missionPoint);
+//        }
+//    }
 
     //method to quit the game and if there is a second word it print out a line "Quit what"
     private boolean quit(Command command) {
