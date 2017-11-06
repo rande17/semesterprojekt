@@ -51,6 +51,25 @@ public class Inventory {
         }
     }
 
+    
+        // Drop item from inventory and add to Room 
+    public void dropItemInventory(String _string) {
+        int quantity = inventory.get(_string) - 1;
+
+        if (inventory.get(_string) <= 1) {
+            inventory.remove(_string);
+
+        } else {
+            inventory.replace(_string, quantity);
+
+        }
+        
+        currentQuantity = currentQuantity - 1;
+//        getItems itemList
+//        .put(_item, quantity);
+//        quantity = itemList.get(_item)
+    }
+
 //get current inventory weight
     public int getCurrentInventoryWeight() {
         currentInventoryWeight = 0;
