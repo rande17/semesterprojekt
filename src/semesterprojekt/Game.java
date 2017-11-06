@@ -28,7 +28,6 @@ public class Game {
  /* In the method body we set the names of the rooms, create the rooms by using the Room 
        constructor from the Room class and then set where you can move to from the different rooms by
        using the method setExit from the Room class */
-    
  /* The currentRoom is also given a value which is the start location = outside */
     ItemLocation itemLocation = new ItemLocation();
     Inventory inventory = new Inventory();
@@ -236,19 +235,25 @@ public class Game {
 //    private void inspectRoom(Command command){
     private void inspectRoom() {
         ArrayList items = itemLocation.getItems(currentRoom);
+        String itemList = "";
         Item seeItem;
 
+        System.out.print("Items in room is: ");
         for (int i = 0; i < items.size(); i++) {
-
             seeItem = (Item) items.get(i);
-            System.out.println(seeItem.getName());
-        }
+            itemList+=seeItem.getName();
+            if (i < items.size() - 1) {
+                itemList = itemList + ", ";
+            }
 
+        }
+        System.out.println(itemList);
     }
 
     /**
      * Method used for taking and placing an item in inventory
-     * @param command used for checking if an item exists in current room 
+     *
+     * @param command used for checking if an item exists in current room
      */
     private void takeItem(Command command) {
         ArrayList currentRoomItem = itemLocation.getItems(currentRoom);
@@ -283,6 +288,7 @@ public class Game {
 //
     /**
      * Method used for dropping item from inventory
+     *
      * @param command used for checking if an item exists in inventory
      */
     private void dropItem(Command command) {
@@ -323,10 +329,12 @@ public class Game {
 //        }
 //    }
     /**
-     * method to quit the game and if there is a second word it print out a line "Quit what"
-     * @param command used for checking if input has a second word, when 
-     * the first word is quit
-     * @return gives either true or false, returns true when input has no second 
+     * method to quit the game and if there is a second word it print out a line
+     * "Quit what"
+     *
+     * @param command used for checking if input has a second word, when the
+     * first word is quit
+     * @return gives either true or false, returns true when input has no second
      * word other than "quit" and terminates program
      */
     private boolean quit(Command command) {
