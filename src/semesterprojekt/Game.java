@@ -28,18 +28,19 @@ public class Game {
  /* In the method body we set the names of the rooms, create the rooms by using the Room 
        constructor from the Room class and then set where you can move to from the different rooms by
        using the method setExit from the Room class */
+    
  /* The currentRoom is also given a value which is the start location = outside */
     ItemLocation itemLocation = new ItemLocation();
     Inventory inventory = new Inventory();
-    NPC npc1 = new NPC();
-    NPC npc2 = new NPC();
-    NPC npc3 = new NPC();
     Item debug = new Item("debug");
     Mission mission1 = new Mission();
     Mission mission2 = new Mission();
     Mission mission3 = new Mission();
-    
 
+    /**
+     * Used to initialize different rooms and their respective items, and also
+     * set the currentRoom
+     */
     private void createRooms() {
         Room airport, beach, jungle, mountain, cave, camp, raft, seaBottom;
 
@@ -53,9 +54,12 @@ public class Game {
         raft = new Room("building the raft");
 
         airport.setExit("west", beach);
+
+        //Initializing an item and putting it in a room
         itemLocation.addItem(airport, new Item("Bottle"));
         itemLocation.addItem(airport, new Item("Boardingpass"));
 
+        //Setting the the exit
         beach.setExit("north", jungle);
         beach.setExit("south", seaBottom);
         beach.setExit("west", camp);
@@ -75,7 +79,7 @@ public class Game {
         itemLocation.addItem(jungle, new Item("Stone"));
         itemLocation.addItem(jungle, new Item("Stick"));
 
-        npc1.NPC("Good guy", jungle);
+        NPC npc1 = new NPC("Good guy", jungle);
         npc1.setDescribtion("The survivor of the plane crash look to be some kind of veteran soldier, but he is heavly injured on his right leg so he cant move ");
         npc1.addDialog("If you want to survive on this GOD forsaken island, you must first find food and shelter");
 
@@ -83,7 +87,7 @@ public class Game {
         itemLocation.addItem(mountain, new Item("Stone"));
         itemLocation.addItem(mountain, new Item("Egg"));
 
-        npc3.NPC("Evil guy", mountain);
+        NPC npc3 = new NPC("Evil guy", mountain);
 
         cave.setExit("west", jungle);
         itemLocation.addItem(cave, new Item("Shroom"));
@@ -91,7 +95,7 @@ public class Game {
         itemLocation.addItem(cave, new Item("Freshwater"));
         itemLocation.addItem(cave, new Item("Flint"));
 
-        npc2.NPC("Mysterious crab", cave);
+        NPC npc2 = new NPC("Mysterious crab", cave);
         npc2.setDescribtion("A mysterious crab that you dont really get why can talk");
         npc2.addDialog("MUHAHAHA i'm the finest and most knowledgeable crab of them all mr.Crab and know this island like the back of my hand.... oh i mean claw"
                 + "\n SO if you want the rarest item you can find on this island, you must first help me find some stuff ");
@@ -111,17 +115,18 @@ public class Game {
 
     }
 
-      private void createMissions(){
-          mission1.addMission("Getting started", "First item", 10);
-          mission2.addMission("Adventure", "Visited the whole island", 20);
-          mission3.addMission("Waking up", "Discovered the beach", 5);
-          
-      }
+    private void createMissions() {
+        mission1.addMission("Getting started", "First item", 10);
+        mission2.addMission("Adventure", "Visited the whole island", 20);
+        mission3.addMission("Waking up", "Discovered the beach", 5);
+
+    }
 //    private void createItems(){
 //    
 //    ob1.addItem(airport, new Item("Bottle"));
 //    ob1.addItem(airport, new Item("Boardingpass"));    
 //    }
+
     /* A method that is initialized when we start the game, that first print out a message with the printWelcome method  
        and then checks if the game is finished or not with a while loop where finished is set to false when the game start*/
     public void play() {
@@ -167,20 +172,23 @@ public class Game {
         } else if (commandWord == CommandWord.GO) {
             goRoom(command);
         } else if (commandWord == CommandWord.SHOW) {
-            showInventory(command);
+//            showInventory(command);
+            showInventory();
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.INSPECT) {
-            inspectRoom(command);
+//            inspectRoom(command);
+            inspectRoom();
         } else if (commandWord == CommandWord.TAKE) {
             takeItem(command);
         } else if (commandWord == CommandWord.TALK) {
 //            TalkTo(command);
         } else if (commandWord == CommandWord.DROP) {
             dropItem(command);
-        } else if (commandWord == CommandWord.MISSION){
+        } else if (commandWord == CommandWord.MISSION) {
 //            showMissions(command); 
-        } return wantToQuit;
+        }
+        return wantToQuit;
     }
 
     /* A method to print a message that show the different commands everytime the command help is used */
@@ -212,17 +220,21 @@ public class Game {
         }
     }
 
-    private void showInventory(Command command) {
+    // Method used for showing contents in inventory
+//    private void showInventory(Command command) {
+    private void showInventory() {
 
         HashMap<String, Integer> inventoryHM = inventory.getInventory();
-        
+
+        System.out.println("Items in inventory is: ");
         for (String i : inventoryHM.keySet()) {
-            System.out.println("Items in inventory is: ");
             System.out.println(inventoryHM.get(i) + "x" + i);
         }
     }
 
-    private void inspectRoom(Command command) {
+    //Method used for inspecting room and showing items in that room
+//    private void inspectRoom(Command command){
+    private void inspectRoom() {
         ArrayList items = itemLocation.getItems(currentRoom);
         Item seeItem;
 
@@ -234,13 +246,17 @@ public class Game {
 
     }
 
+    /**
+     * Method used for taking and placing an item in inventory
+     * @param command used for checking if an item exists in current room 
+     */
     private void takeItem(Command command) {
         ArrayList currentRoomItem = itemLocation.getItems(currentRoom);
         Item seeItem;
         int indexItem = -1;
         Item addToInventory = debug;
 
-        for (int i = 0; i < currentRoomItem .size(); i++) {
+        for (int i = 0; i < currentRoomItem.size(); i++) {
             seeItem = (Item) currentRoomItem.get(i);
             if (seeItem.getName().equalsIgnoreCase(command.getSecondWord())) {
                 addToInventory = seeItem;
@@ -252,7 +268,7 @@ public class Game {
         if (indexItem >= 0) {
             System.out.println("Item has been added to inventory: " + addToInventory.getName());
             inventory.addItemInInventory(addToInventory);
-            currentRoomItem .remove(indexItem);
+            currentRoomItem.remove(indexItem);
             itemLocation.setItem(currentRoom, currentRoomItem);
         } else {
             System.out.println("could not find " + command.getSecondWord());
@@ -264,35 +280,38 @@ public class Game {
 //        if(npc1 == currentRoom)
 //          getdialog();
 //     }
-    
 //
+    /**
+     * Method used for dropping item from inventory
+     * @param command used for checking if an item exists in inventory
+     */
     private void dropItem(Command command) {
         HashMap newInventory = inventory.getInventory();
         Iterator itte = newInventory.entrySet().iterator();
         String seeItem;
 //        int indexItem = -1;
-        String indexItem="";
+        String indexItem = "";
         String dropFromInventory = "debug";
 
         while (itte.hasNext()) {
             HashMap.Entry liste = (HashMap.Entry) itte.next();
-            String itemName = (String)liste.getKey();
-                if (itemName.equalsIgnoreCase(command.getSecondWord())) {
-                    dropFromInventory = itemName;
-                    indexItem = itemName;
-                    break;
+            String itemName = (String) liste.getKey();
+            if (itemName.equalsIgnoreCase(command.getSecondWord())) {
+                dropFromInventory = itemName;
+                indexItem = itemName;
+                break;
             }
         }
         if (!indexItem.equals("")) {
-                        inventory.dropItemInventory(indexItem);
-                        System.out.println("You have dropped: " + indexItem);
+            inventory.dropItemInventory(indexItem);
+            System.out.println("You have dropped: " + indexItem);
 
-        }else {
+        } else {
             System.out.println("Can't drop item that isn't in inventory " + command.getSecondWord());
         }
 
     }
-    
+
 //    private void showMissions(Command command){
 //      
 //      HashMap<String, String> viewMission = mission.getMissionDescribtion(key);
@@ -302,8 +321,13 @@ public class Game {
 //            System.out.println(viewMission.get(i) + mission.missionStatus + mission.missionPoint);
 //        }
 //    }
-
-    //method to quit the game and if there is a second word it print out a line "Quit what"
+    /**
+     * method to quit the game and if there is a second word it print out a line "Quit what"
+     * @param command used for checking if input has a second word, when 
+     * the first word is quit
+     * @return gives either true or false, returns true when input has no second 
+     * word other than "quit" and terminates program
+     */
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
